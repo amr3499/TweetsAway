@@ -9,21 +9,10 @@ import time
 import base64
 import os
 
-blue1url = 'http://10.0.1.4:5000/user/addtweet'
 blue2url = 'http://10.0.2.4:5000/user/addtweet'
 
 # Our Users
 redTeamUsers = ['dlennon','mjvl','wDestler','hTubman123','JaneDoe','jbarrett01','johncena','lskywalker']
-
-# Get Team 1 Users
-blue1json = open('blue1.json',)
-data1 = json.load(blue1json)
-blue1json.close()
-blue1 = []
-
-for u in data1['following']:
-    if (u['username']) not in redTeamUsers:
-        blue1.append(u['id'])
 
 # Get Team 2 Users
 blue2json = open('blue2.json',)
@@ -53,12 +42,6 @@ for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
 # just be to annoying
 while(1):
     counter = 0
-    for u1 in blue1:
-        req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
-        res = requests.post(blue1url, json = req)
-        print(res)
-        counter += 1
-        time.sleep(10)
     for u2 in blue2:
         req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
         res = requests.post(blue2url, json = req)

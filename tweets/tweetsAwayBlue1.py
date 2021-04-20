@@ -10,7 +10,6 @@ import base64
 import os
 
 blue1url = 'http://10.0.1.4:5000/user/addtweet'
-blue2url = 'http://10.0.2.4:5000/user/addtweet'
 
 # Our Users
 redTeamUsers = ['dlennon','mjvl','wDestler','hTubman123','JaneDoe','jbarrett01','johncena','lskywalker']
@@ -25,16 +24,6 @@ for u in data1['following']:
     if (u['username']) not in redTeamUsers:
         blue1.append(u['id'])
 
-# Get Team 2 Users
-blue2json = open('blue2.json',)
-data2 = json.load(blue2json)
-blue2json.close()
-blue2 = []
-
-for u in data2['following']:
-    if (u['username']) not in redTeamUsers:
-        blue2.append(u['id'])
-
 # Loop through a folder of potato pics and encode them
 potatoes = []
 for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
@@ -46,10 +35,10 @@ for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
 
 # Go until the user interrupts
 #
-# Loop through all blue1 and blue2 users sending a tweet of
+# Loop through all blue1 users sending a tweet of
 # the next potato in the folder 
 #
-# Will wait 15 seconds after each request to not DoS the website,
+# Will wait 10 seconds after each request to not DoS the website,
 # just be to annoying
 while(1):
     counter = 0
@@ -59,13 +48,3 @@ while(1):
         print(res)
         counter += 1
         time.sleep(10)
-    for u2 in blue2:
-        req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
-        res = requests.post(blue2url, json = req)
-        print(res)
-        counter += 1
-        time.sleep(10)
-
-
-
-

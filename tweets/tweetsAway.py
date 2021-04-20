@@ -44,6 +44,11 @@ for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
     image_64 = base64.encodebytes(image_read)
     potatoes.append(image_64)
 
+# Words
+words = open('potato.txt')
+content = words.readlines()
+print(len(content))
+
 # Go until the user interrupts
 #
 # Loop through all blue1 and blue2 users sending a tweet of
@@ -53,6 +58,7 @@ for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
 # just be to annoying
 while(1):
     counter = 0
+    counter2 = 0
     for u1 in blue1:
         req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
         res = requests.post(blue1url, json = req)
@@ -65,7 +71,15 @@ while(1):
         print(res)
         counter += 1
         time.sleep(10)
-
-
-
-
+    for u1 in blue1:
+        req = {"userId" : (f"{u1}"), "text" : content[counter2 % len(content)]}
+        res = requests.post(blue1url, json = req)
+        print(res)
+        counter += 1
+        time.sleep(10)
+    for u2 in blue2:
+        req = {"userId" : (f"{u1}"), "text" : content[counter2 % len(content)]}
+        res = requests.post(blue2url, json = req)
+        print(res)
+        counter += 1
+        time.sleep(10)

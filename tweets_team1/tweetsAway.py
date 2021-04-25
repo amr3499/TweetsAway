@@ -1,7 +1,7 @@
 # Alex Rosse
 # CDT Red Team
 # Python Script to send post requests to add potato pics
-# to both blue team's web servers
+# to blue team 1's web servers
 
 import json
 import requests
@@ -10,7 +10,6 @@ import base64
 import os
 
 blue1url = 'http://10.0.1.4:5000/user/addtweet'
-blue2url = 'http://10.0.2.4:5000/user/addtweet'
 
 # Our Users
 redTeamUsers = ['dlennon','mjvl','wDestler','hTubman123','JaneDoe','jbarrett01','johncena','lskywalker']
@@ -25,16 +24,6 @@ for u in data1['following']:
     if (u['username']) not in redTeamUsers:
         blue1.append(u['id'])
 
-# Get Team 2 Users
-blue2json = open('blue2.json',)
-data2 = json.load(blue2json)
-blue2json.close()
-blue2 = []
-
-for u in data2['following']:
-    if (u['username']) not in redTeamUsers:
-        blue2.append(u['id'])
-
 # Loop through a folder of potato pics and encode them
 potatoes = []
 for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
@@ -47,39 +36,26 @@ for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
 # Words
 words = open('potato.txt')
 content = words.readlines()
-print(len(content))
 
 # Go until the user interrupts
 #
 # Loop through all blue1 and blue2 users sending a tweet of
 # the next potato in the folder 
 #
-# Will wait 15 seconds after each request to not DoS the website,
+# Will wait X seconds after each request to not DoS the website,
 # just be to annoying
 while(1):
     counter = 0
     counter2 = 0
-    for u1 in blue1:
-        req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
-        res = requests.post(blue1url, json = req)
-        print(res)
-        counter += 1
-        time.sleep(10)
-    for u2 in blue2:
-        req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
-        res = requests.post(blue2url, json = req)
-        print(res)
-        counter += 1
-        time.sleep(10)
+#    for u1 in blue1:
+#        req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
+#        res = requests.post(blue1url, json = req)
+#        print(res)
+#        counter += 1
+#        time.sleep(10)
     for u1 in blue1:
         req = {"userId" : (f"{u1}"), "text" : content[counter2 % len(content)]}
         res = requests.post(blue1url, json = req)
-        print(res)
-        counter += 1
-        time.sleep(10)
-    for u2 in blue2:
-        req = {"userId" : (f"{u1}"), "text" : content[counter2 % len(content)]}
-        res = requests.post(blue2url, json = req)
         print(res)
         counter += 1
         time.sleep(10)

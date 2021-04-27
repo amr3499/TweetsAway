@@ -25,13 +25,13 @@ for u in data2['following']:
         blue2.append(u['id'])
 
 # Loop through a folder of potato pics and encode them
-potatoes = []
-for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
-    fullpath = os.path.join('/home/alexandriarosse/Desktop/tweets/potatoez/', filename)
-    image = open(fullpath, 'rb')
-    image_read = image.read()
-    image_64 = base64.encodebytes(image_read)
-    potatoes.append(image_64)
+#potatoes = []
+#for filename in os.listdir('/home/alexandriarosse/Desktop/tweets/potatoez'):
+#    fullpath = os.path.join('/home/alexandriarosse/Desktop/tweets/potatoez/', filename)
+#    image = open(fullpath, 'rb')
+#    image_read = image.read()
+#    image_64 = base64.encodebytes(image_read)
+#    potatoes.append(image_64)
 
 # Words
 words = open('potato.txt')
@@ -54,8 +54,8 @@ while(1):
 #        counter += 1
 #        time.sleep(10)
     for u2 in blue2:
-        req = {"userId" : (f"{u1}"), "text" : content[counter2 % len(content)]}
+        req = {"userId" : (f"{u2}"), "text" : content[counter2 % len(content)]}
         res = requests.post(blue2url, json = req)
-        print(res)
+        print(counter2 , res)
         counter2 += 1
         time.sleep(10)

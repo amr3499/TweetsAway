@@ -57,5 +57,5 @@ while(1):
         req = {"userId" : (f"{u1}"), "text" : content[counter2 % len(content)]}
         res = requests.post(blue1url, json = req)
         print(res)
-        counter += 1
+        counter2 += 1
         time.sleep(10)

@@ -37,6 +37,7 @@ for u in data2['following']:
 words = open('potato.txt')
 content = words.readlines()
 
+counter = 0
 # Go until the user interrupts
 #
 # Loop through all blue1 and blue2 users sending a tweet of
@@ -45,8 +46,6 @@ content = words.readlines()
 # Will wait X seconds after each request to not DoS the website,
 # just be to annoying
 while(1):
-    counter = 0
-    counter2 = 0
 #    for u2 in blue2:
 #       req = {"userId" : (f"{u1}"), "text" : potatoes[counter % len(potatoes)]}
 #        res = requests.post(blue2url, json = req)

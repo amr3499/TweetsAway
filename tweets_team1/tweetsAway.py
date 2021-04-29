@@ -31,7 +31,7 @@ content = words.readlines()
 counter = 0
 # Go until the user interrupts
 #
-# Loop through all blue1 and blue2 users sending a tweet of
+# Loop through all blue1 users sending a tweet of
 # the next potato in the folder 
 #
 # Will wait X seconds after each request to not DoS the website,
@@ -40,6 +40,6 @@ while(1):
     for u in blue1:
         req = {"userId" : (f"{u}"), "text" : content[counter % len(content)]}
         res = requests.post(blue1url, json = req)
-        print(counter0 , res)
+        print(counter , res)
         counter += 1
         time.sleep(10)

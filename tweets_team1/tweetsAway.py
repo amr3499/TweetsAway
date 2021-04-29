@@ -1,6 +1,6 @@
 # Alex Rosse
 # CDT Red Team
-# Python Script to send post requests to add potato pics
+# Python Script to send post requests to add potato tweets
 # to blue team 1's web servers
 
 import json

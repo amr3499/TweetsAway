@@ -6,7 +6,6 @@
 import json
 import requests
 import time
-import base64
 import os
 
 blue1url = 'http://10.0.1.4:5000/tweet/add-tweet'
